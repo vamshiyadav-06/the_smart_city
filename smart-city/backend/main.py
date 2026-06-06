@@ -1,5 +1,5 @@
 """Smart City India — FastAPI Backend."""
-
+from dotenv import load_dotenv
 import logging
 import sys
 from contextlib import asynccontextmanager
