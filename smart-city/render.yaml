@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: smart-city-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: API_SECRET_KEY
+        generateValue: true
+      - key: TOMTOM_API_KEY
+        sync: false
+      - key: OPENWEATHER_API_KEY
+        sync: false
+    healthCheckPath: /health
+
+  - type: web
+    name: smart-city-dashboard
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run frontend/app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true
+    envVars:
+      - key: BACKEND_URL
+        fromService:
+          type: web
+          name: smart-city-api
+          property: hostport
+      - key: STREAMLIT_SERVER_PORT
+        value: "8501"
