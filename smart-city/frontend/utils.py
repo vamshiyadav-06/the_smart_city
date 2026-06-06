@@ -1,15 +1,12 @@
 """Smart City India — shared frontend utilities."""
 
-import os
 from typing import Any, Optional
 
 import requests
 import streamlit as st
-from dotenv import load_dotenv
-
-load_dotenv()
 
 BACKEND_URL = st.secrets["BACKEND_URL"].rstrip("/")
+
 CITIES = [
     "Hyderabad",
     "Bengaluru",
