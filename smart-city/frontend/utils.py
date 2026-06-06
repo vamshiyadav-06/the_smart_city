@@ -9,8 +9,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000").rstrip("/")
-
+BACKEND_URL = st.secrets["BACKEND_URL"].rstrip("/")
 CITIES = [
     "Hyderabad",
     "Bengaluru",
