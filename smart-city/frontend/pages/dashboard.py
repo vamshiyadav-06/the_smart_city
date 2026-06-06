@@ -10,6 +10,7 @@ from frontend.components.analytics_modules import (
 from frontend.utils import (
     api_get,
     apply_theme,
+    display_city_images,
     kpi_card,
     render_city_selector,
 )
@@ -45,6 +46,7 @@ def render():
             """,
             unsafe_allow_html=True,
         )
+        display_city_images(city, meta.get("image_paths"))
 
     overview = api_get(f"/cities/{city}/overview")
 

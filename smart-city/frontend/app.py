@@ -10,7 +10,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from frontend.pages import ai_analysis, dashboard, parking, reports, road_damage, traffic
-from frontend.utils import apply_theme, check_backend, init_session, BACKEND_URL
+from frontend.utils import apply_theme, check_backend, init_session
 
 st.set_page_config(page_title="Smart City India", page_icon="🇮🇳", layout="wide", initial_sidebar_state="expanded")
 apply_theme()

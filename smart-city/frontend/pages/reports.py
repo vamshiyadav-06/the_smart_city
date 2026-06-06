@@ -3,12 +3,12 @@
 import requests
 import streamlit as st
 
-from frontend.utils import BACKEND_URL, apply_theme, get_city, render_city_selector
+from frontend.utils import apply_theme, get_backend_url, get_city, render_city_selector
 
 
 def _download(endpoint: str, label: str, filename: str, city: str):
     try:
-        resp = requests.get(f"{BACKEND_URL}{endpoint}", params={"city": city}, timeout=90)
+        resp = requests.get(f"{get_backend_url()}{endpoint}", params={"city": city}, timeout=90)
         if resp.status_code == 200:
             st.download_button(label, data=resp.content, file_name=filename, key=label)
         else:

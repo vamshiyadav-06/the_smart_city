@@ -5,7 +5,7 @@ from datetime import datetime
 import requests
 import streamlit as st
 
-from frontend.utils import BACKEND_URL, apply_theme, clear_caches, fetch_ai_analysis, get_city, kpi_card, render_city_selector
+from frontend.utils import apply_theme, clear_caches, fetch_ai_analysis, get_backend_url, kpi_card, render_city_selector
 
 
 def render():
@@ -19,7 +19,7 @@ def render():
     if refresh:
         clear_caches()
         try:
-            resp = requests.get(f"{BACKEND_URL}/ai-analysis/{city}", params={"refresh": True}, timeout=90)
+            resp = requests.get(f"{get_backend_url()}/ai-analysis/{city}", params={"refresh": True}, timeout=90)
             resp.raise_for_status()
             data = resp.json()
         except Exception as exc:
